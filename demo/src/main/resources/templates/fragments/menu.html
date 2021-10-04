@@ -1,0 +1,79 @@
+<meta charset="utf-8" />
+<!--begin::Menu Container-->
+<div th:fragment="menu" id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1"
+	data-menu-dropdown-timeout="500">
+	<!--begin::Menu Nav-->
+	<ul class="menu-nav" th:switch="${statuss}">
+
+		<li class="menu-item" aria-haspopup="true">
+			<a data-ajax="true" href="/dashboard" class="menu-link">
+				<i class="menu-icon flaticon-home"></i>
+				<span class="menu-text">Anasayfa</span>
+			</a>
+		</li>
+
+		<li class="menu-item" aria-haspopup="true">
+			<a data-ajax="true" href="/dashboard/users" class="menu-link">
+				<i class="menu-icon flaticon-user"></i>
+				<span class="menu-text">Kullanıcılar</span>
+			</a>
+		</li>
+
+		<li class="menu-item" aria-haspopup="true">
+			<a data-ajax="true" href="/dashboard/products" class="menu-link">
+				<i class="menu-icon fas fa-apple-alt"></i>
+				<span class="menu-text">Ürünler</span>
+			</a>
+		</li>
+
+		<li class="menu-item" aria-haspopup="true">
+			<a data-ajax="true" href="/dashboard/categories" class="menu-link">
+				<i class="menu-icon far fa-object-ungroup"></i>
+				<span class="menu-text">Kategoriler</span>
+			</a>
+		</li>
+
+		<li class="menu-item" aria-haspopup="true">
+			<a data-ajax="true" href="/dashboard/subCategories" class="menu-link">
+				<i class="menu-icon far fa-object-group"></i>
+				<span class="menu-text">Alt Kategoriler</span>
+			</a>
+		</li>
+		<li class="menu-item" aria-haspopup="true">
+			<a data-ajax="true" href="/dashboard/orders" class="menu-link">
+				<i class="menu-icon flaticon2-shopping-cart-1"></i>
+				<span class="menu-text">Siparişler</span>
+			</a>
+		</li>
+		<div th:case="'SUPER_ADMIN'" style="margin-top: -15px;">
+
+			<div th:switch="${statuss}" th:fragment="menu" id="kt_aside_menu">
+				<!--begin::Menu Nav-->
+				<ul class="menu-nav">
+
+					<li class="menu-item" aria-haspopup="true">
+						<a data-ajax="true" href="/dashboard/restaurants" class="menu-link">
+							<i class="menu-icon flaticon2-architecture-and-city"></i>
+							<span class="menu-text">Restoranlar</span>
+						</a>
+					</li>
+
+					<li class="menu-item" aria-haspopup="true">
+						<a data-ajax="true" href="/dashboard/storages" class="menu-link">
+							<i class="menu-icon flaticon2-box-1"></i>
+							<span class="menu-text">Depolar</span>
+						</a>
+					</li>
+					<li class="menu-item" aria-haspopup="true">
+						<a data-ajax="true" href="/dashboard/couriers" class="menu-link">
+							<i class="menu-icon fa fa-motorcycle "> </i>
+							<span class="menu-text">Kuryeler</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</ul>
+	<!--end::Menu Nav-->
+</div>
+<!--end::Menu Container-->

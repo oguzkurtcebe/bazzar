@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+	<!--begin::Head-->
+	<head>
+		<meta charset="utf-8" />
+		<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style type="text/css">
+body {
+    background-color: #eee
+}
+
+.product {
+    padding: 10px;
+    background-color: #fff;
+    position: relative
+}
+
+.about h4 {
+    margin-bottom: -3px
+}
+
+.about h3 {
+    color: #e3ce57
+}
+
+.about span {
+    font-size: 13px
+}
+
+.dot {
+    height: 40px;
+    width: 40px;
+    background-color: #e3ce57;
+    border-radius: 50%;
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    cursor: pointer;
+    right: 10%;
+    z-index: 10;
+    bottom: -5%
+}
+
+.inner-dot {
+    height: 30px;
+    width: 30px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    cursor: pointer
+}
+</style>
+	</head>
+	<!--end::Head-->
+	<!--begin::Body-->
+	<body>
+		
+<!------ Include the above in your HEAD tag ---------->
+
+
+
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center g-1">
+        <div class="col-md-4">
+            <div class="product text-center"> <img src="https://ik.imagekit.io/ytqeidewn/java/2901727.jpg" width="250">
+                <div class="about text-left px-3">
+                    <h4>Nar</h4> <span class="text-muted">Meyve & Sebze</span>
+                    <h3>8 TL</h3>
+                </div> <span class="dot"><span class="inner-dot"><i class="fa fa-plus"></i></span></span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="product text-center"> <img src="https://ik.imagekit.io/ytqeidewn/java/86903202.jpg" width="250">
+                <div class="about text-left px-3">
+                    <h4>Pınar Puding Kakaolu 200 Gr.</h4> <span class="text-muted">Temel Gıda</span>
+                    <h3>5TL</h3>
+                </div> <span class="dot"><span class="inner-dot"><i class="fa fa-plus"></i></span></span>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<br>
+<br>
+<center>
+	<select>
+		<option>08:30 - 11:00</option>
+		<option>09:00 - 09:30</option>
+		<option>09:30 - 10:00</option>
+		<option>10:00 - 10:30</option>
+		<option>10:30 - 11:00</option>
+		<option>11:00 - 11:30</option>
+	</select>
+</center>
+<br>
+<br>
+    <center><button class="btn btn-primary orderSave">Sipariş Ver</button></center>
+	</body>
+	<!--end::Body-->
+	
+	<script type="text/javascript">
+	
+
+
+	
+	$(".orderSave").click( function () {
+
+		var userData = [];
+		userData.push({
+				    	"firstName": "Oğuz",
+				        "lastName": "KurtCebe",
+				        "mobileNumber": "5434563261"
+					 });
+		
+		var cartData = [];  	
+			
+		cartData.push({
+				    	"productId": "1234",
+				        "productTitle": "Nar",
+				        "productPrice": 4,
+				        "quantity": 1,
+				        "productTotal": 8,
+				        "imageUrl": "https://ik.imagekit.io/ytqeidewn/java/2901727.jpg",
+				        "categoryId": "12"
+					 });
+
+		var param={
+				"cart": [
+					{
+					"productId": "6094525b2fd9b3003b68c94a",
+					"productName": "  Arbella Makarna Kalem Kesme",
+					"quantity": 1,
+					"price": 2.95,
+					"amountRefunded": 0,
+					"productTotal": 2.95,
+					"imageUrl": "https://ik.imagekit.io/ytqeidewn/1621345891595_original_Başlıksız-1_4yMDGd6O9.jpg",
+					"categoryId": "60819ff62fd9b3003b68a74a",
+					"subCategoryId": "6087197c2fd9b3003b68a820"
+					},
+					{
+					"productId": "608fbb9b2fd9b3003b68c6a2",
+					"productName": "Sütaş Yemeklik Krema",
+					"quantity": 2,
+					"price": 7.95,
+					"amountRefunded": 0,
+					"productTotal": 15.9,
+					"unit": "200 ML",
+					"imageUrl": "https://ik.imagekit.io/ytqeidewn/1621417491896_original_Başlıksız-1_uok5WMhrM.jpg",
+					"categoryId": "60819ff62fd9b3003b68a74a",
+					"subCategoryId": "60871a042fd9b3003b68a82a"
+					}
+					],
+					"tax": 0.0,
+					"totalProduct": 2,
+					"couponCode": "NOCONTEX",
+					"transactionDetails": {
+					"transactionStatus": "FAILED",
+					"paymentCount": 0,
+					"transactionDate": 1.625515958923E12,
+					"transactionAmount": 4.85
+					},
+					"paymentType": "COD",
+					"deliveryDate": "1/10/2021",
+					"deliveryTime": "10:00 - 10:30",
+					"usedWalletAmount": 0,
+					"orderID": 577463,
+					"address":{
+					"location": {
+					"latitude": 32000.0,
+					"longitude": 33000.0
+					},
+					"address": "VALİ MİTHAT BEY mahallesi, DEFDERDARLIK sokak, no: 12 İPEKYOLU/VAN",
+					"postalCode": "65100"
+					},
+					"user": {
+					"firstName": "Oğuz",
+					"lastName": "Kurtcebe",
+					"mobileNumber": "5434563261",
+					"countryCode": "+90",
+					"countryName": "Turkey"
+					},
+					"userId":"12345",
+					"orderStatus": "PENDING",
+					"subTotal": 0,
+					"grandTotal": 4.85,
+					"paymentStatus": "PENDING"
+					}
+		var ser_data=JSON.stringify(param);
+
+			console.log(ser_data);
+			
+		
+		$.ajax({
+		url: "http://localhost:8080/rest/order",
+		type: "POST",
+	    data: ser_data,
+	    contentType: "application/json",
+	    success: function (data) {
+		window.location = "/dashboard/orders";
+	       
+	    },error: function () {
+			toastr.error('Bir sorun oluştu..', 'Hata!', {"progressBar": true,positionClass: "toast-bottom-right",timeOut: 2000})
+		}
+	    });
+	})
+	</script>
+</html>
