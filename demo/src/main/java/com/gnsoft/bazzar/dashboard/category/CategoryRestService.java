@@ -55,7 +55,7 @@ public class CategoryRestService {
 	@PutMapping("/category/{id}")
 	public ResponseEntity<?> updateCategory(@PathVariable("id") String id, @RequestBody @Valid Category category) {
 		try {
-			Category updatedCategory = categoryService.findCategoryById(id).orElse(category);
+			Category updatedCategory = categoryService.findCategoryById(id).orElseThrow(null);
 			updatedCategory.setStatus(category.isStatus());
 			updatedCategory.setTitle(category.getTitle());
 			updatedCategory.setDescription(category.getDescription());
