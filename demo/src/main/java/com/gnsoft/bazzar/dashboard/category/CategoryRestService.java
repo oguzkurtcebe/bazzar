@@ -122,7 +122,7 @@ public class CategoryRestService {
 
 	@PutMapping("/category/updateStatus/{id}")
 	public ResponseEntity<?> updateStatusCategory(@PathVariable("id") String id) {
-		Category category = categoryService.findCategoryById(id).orElseThrow();
+		Category category = categoryService.findCategoryById(id).orElseThrow(null);
 		if (category.isStatus()) {
 			category.setStatus(false);
 			categoryService.updateCategory(category);
