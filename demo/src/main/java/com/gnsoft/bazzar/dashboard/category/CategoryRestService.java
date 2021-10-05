@@ -2,7 +2,6 @@ package com.gnsoft.bazzar.dashboard.category;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 import javax.validation.Valid;
 
@@ -56,7 +55,7 @@ public class CategoryRestService {
 	@PutMapping("/category/{id}")
 	public ResponseEntity<?> updateCategory(@PathVariable("id") String id, @RequestBody @Valid Category category) {
 		try {
-			Category updatedCategory = categoryService.findCategoryById(id).orElseThrow();
+			Category updatedCategory = categoryService.findCategoryById(id).orElseThrow(null);
 			updatedCategory.setStatus(category.isStatus());
 			updatedCategory.setTitle(category.getTitle());
 			updatedCategory.setDescription(category.getDescription());
