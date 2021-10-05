@@ -17,7 +17,7 @@ public class Variant {
 	private int offerPercent;
 	private boolean isSubScriptionAllowed;
 	private String unit;
-	private double price;
+	private String price;
 	private int productStock;
 	
 }
