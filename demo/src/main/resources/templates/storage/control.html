@@ -289,6 +289,7 @@
     <div id="result">Sonuç</div>
     <br>
   	<b><span class="productCount">0</span> adet ürün </b><div class="btn btn-success printData">Kontrol Et!</div>
+  	<div class="btn btn-primary loading">Tarama Yapılıyor Lütfen Bekleyiniz...</div>
   	<div class="barcodeInfoPrint"></div>
   	
   </div>
@@ -396,7 +397,9 @@
 <!-- 		<script type="text/javascript" charset="UTF-8" src="xyz.js"></script> -->
 		
     <script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@8.2.5/dist/dbr.js"></script>
-		<script>
+		<script>		
+		$(".loading").hide();
+
         Dynamsoft.DBR.BarcodeScanner.showDialog = function () { };
         window.onload = async function () {
             try {
@@ -608,7 +611,9 @@
 		/*--------------------------Print Data--------------------------*/
 
 		$(".printData").click( function () {
-			
+						$(".printData").remove();
+			$(".loading").show();
+
 
 	    	var barcodeId = [];
 			jQuery("input[name='barcodeId']").each(function() {
@@ -628,9 +633,9 @@
 		    contentType: "application/json",
 	        success: function (data) {
 				toastr.success('Barkod Taraması Tamamlandı.', 'İşlem Başarılı', {"progressBar": true,positionClass: "toast-bottom-right",timeOut: 1500})
-				/*setTimeout(function(){   
+				setTimeout(function(){   
 		        window.location.assign("/storageControl");
-		        }, 1500);*/
+		        }, 1500);
 		    },error: function () {
 				toastr.error('Bir sorun oluştu..', 'Hata!', {"progressBar": true,positionClass: "toast-bottom-right",timeOut: 2000})
 			}
