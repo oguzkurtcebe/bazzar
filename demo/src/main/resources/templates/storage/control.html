@@ -108,6 +108,7 @@
 					<!--end::Aside Menu-->
 				</div>
 				<!--end::Aside-->
+				
 				<!--begin::Wrapper-->
 				<div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
 					<!--begin::Header-->
@@ -135,7 +136,7 @@
 										</select>
 										<br>
 										<br>
-										<center><button class="btn btn-success strageStart" data-toggle='modal' data-target='.bd-example-modal-lg'>Taramaya başla</button></center>
+										<center><button class="btn btn-success storageStart" data-toggle='modal' data-target='.bd-example-modal-lg'>Taramaya başla</button></center>
 									</div>
 									
 								</div>
@@ -289,7 +290,13 @@
     <div id="result">Sonuç</div>
     <br>
   	<b><span class="productCount">0</span> adet ürün </b><div class="btn btn-success printData">Kontrol Et!</div>
-  	<div class="btn btn-primary loading">Tarama Yapılıyor Lütfen Bekleyiniz...</div>
+  	
+  	<div class="btn btn-primary loading">
+  	
+	<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+	Tarama Yapılıyor Lütfen Bekleyiniz...</div>
+  	
+	
   	<div class="barcodeInfoPrint"></div>
   	
   </div>
@@ -309,13 +316,19 @@
  </div>
  
  
+ <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
  
- 
+<button class="btn btn-danger" onclick="ExportToExcel('xlsx')"><i class="fa fa-file-alt"></i>Olmayanları Kaydet</button>
 
 
-
-
-
+<script type="text/javascript">
+function ExportToExcel(type, fn, dl) {
+    var elt = document.getElementById('tbl_exporttable_to_xls');
+    var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+    return dl ?
+      XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
+      XLSX.writeFile(wb, fn || ('MySheetName.' + (type || 'xlsx')));
+ }</script>
 
 
 
@@ -340,7 +353,17 @@
 		<!-- begin::User Panel-->
 		<div th:replace="storage/fragments/user-profile :: user-profile"></div>
 		<!-- end::User Panel-->
-
+<center>
+ <table id="tbl_exporttable_to_xls" border="1">
+	<thead>
+		<th>OlmayanBarcodeId</th>
+	</thead>
+	<tbody>
+		<tr id="olmayanIdYazdir" class="olmayanIdYazdir">
+		</tr>
+	</tbody>
+</table>
+</center>
 
 
 		<!--begin::Scrolltop-->
@@ -397,9 +420,8 @@
 <!-- 		<script type="text/javascript" charset="UTF-8" src="xyz.js"></script> -->
 		
     <script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@8.2.5/dist/dbr.js"></script>
-		<script>		
+		<script>
 		$(".loading").hide();
-
         Dynamsoft.DBR.BarcodeScanner.showDialog = function () { };
         window.onload = async function () {
             try {
@@ -551,7 +573,6 @@
 		
 		var productCount = 0;
 		function startTest(qrCodeMessage) {
-			
 			var barcodeId = qrCodeMessage;
 		/*User Control*/
 				$.ajax({
@@ -559,12 +580,12 @@
 				type: "GET",
 				success:function(data) {
 					productCount++;
-					
+
 					$(".productCount").html(productCount);
 					if(data.barcodeId == barcodeId){
 						$(".noUser").hide();
 						$(".thereIsUser").show();
-
+						
 
 					  	var barcodeImageUrl = '<img style="padding-right: 10px;" src="'+data.imageUrl+'" width="70">';
 					  	var title = '<span class="barcodeTitle">'+data.title+'</span>';
@@ -587,7 +608,9 @@
 									title = dataN.title;
 								  	var button = '<button class="btn btn-success">Ürünü kaydet</button>';
 								  	var barcodeIdPrint = "<input type='hidden' name='barcodeId' value='0' />";
-									$(".barcodeInfoPrint").append("<div style='margin-top: 7px;'>"+barcodeImageUrl+title+button+barcodeIdPrint+"</div>");
+									$(".barcodeInfoPrint").before("<div style='margin-top: 7px;'>"+barcodeImageUrl+title+button+barcodeIdPrint+"</div>");
+									$(".olmayanIdYazdir").append("<div style='margin-top: 7px;'>"+dataN.barcode+"</div>");
+									//$("#olmayanIdYazdir").before("<td>"+dataN.barcode+"</td>");
 								}
 							})
 						})
@@ -610,10 +633,11 @@
 
 		/*--------------------------Print Data--------------------------*/
 
+		$("#barcodeScanner").hide();
 		$(".printData").click( function () {
-						$(".printData").remove();
+			$("#barcodeScanner").hide();
+			$(".printData").remove();
 			$(".loading").show();
-
 
 	    	var barcodeId = [];
 			jQuery("input[name='barcodeId']").each(function() {
@@ -692,12 +716,14 @@
 
 /*--------------------------!Product Add Category View--------------------------*/
 
- 
-
-	$(".strageStart").click( function () {
+ 	
+	
+	$(".storageStart").click( function () {
 		var categoryId = $("option:selected", ".categorySelect").val();
 		var categoryName = $("option:selected", ".categorySelect").text();
+		
 
+		$("#barcodeScanner").show();
 		$(".categoryName").text(categoryName);
 	})
 
