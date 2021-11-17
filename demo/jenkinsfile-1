@@ -34,7 +34,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                git 'https://github.com/denizturkmen/SpringBootMysqlCrud.git'
+                git 'https://github.com/oguzkurtcebe/bazzar.git'
                 sh 'mvn clean'
                 sh 'mvn compile'
                 sh 'mvn package'
