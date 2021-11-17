@@ -1,0 +1,69 @@
+pipeline {
+    agent any
+    tools {
+        jdk 'jdk'
+        maven '3.8.3'
+
+    }
+    stages {
+        stage("build project") {
+            steps {
+                git 'https://github.com/oguzkurtcebe/bazzar.git'
+                sh 'java -version'
+                echo 'building project...'
+                sh "mvn compile"
+                sh "mvn package"
+                //sh "mvn test"
+                sh "mvn clean install"
+            }
+        }
+    }
+}
+------------------------------------------------------------------------
+pipeline {
+    agent any
+    stages {
+        stage('Versiyon'){
+            steps{
+                echo "Maven Integration Version"
+                sh "mvn --version"
+                echo "Java Version"
+                sh "java --version"
+            }
+        }
+        stage('Build') {
+            steps {
+                // Get some code from a GitHub repository
+                git 'https://github.com/oguzkurtcebe/bazzar.git'
+                sh 'mvn clean'
+                sh 'mvn compile'
+                sh 'mvn package'
+            }
+        }
+    }
+}
+------------------------------------------------------------------------------------------------------
+pipeline{
+    agent {
+        docker {
+            image "mvn:3.8.3-openjdk-11"
+            label "master"
+        }
+    }
+    stages{
+        stage('Build'){
+            steps{
+                sh "sudo apt update"
+                sh "sudo apt install -y openssh-server"
+                sh "ssh -V"
+                sh "mvn -version"
+                sh "mvn clean"
+            }
+        }
+    }
+    post{
+        always {
+            cleanWs()
+        }
+    }
+}
